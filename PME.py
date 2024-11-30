@@ -29,7 +29,7 @@ plt.plot(df['Año'], df['Saldo Acumulado'], label='Saldo Acumulado', marker='s')
 
 # Personalizar la gráfica
 plt.xlabel('Año')
-plt.ylabel('Valor en USD')
+plt.ylabel('Valor en MXN')
 plt.title('Simulación del Saldo del Fondo de Pensiones')
 plt.legend()
 plt.grid(True)
