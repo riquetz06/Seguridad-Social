@@ -1,0 +1,158 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{longtable}
+\usepackage{caption}
+
+\geometry{a4paper, margin=1in}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    pdftitle={Tablas de Amortización con y sin Pagos Extraordinarios},
+    pdfauthor={Autor del Documento},
+}
+
+\title{Tablas de Amortización con y sin Pagos Extraordinarios}
+\author{Mtro. en Fin. Riquet Zequeira Fernández}
+\date{Abril 2025}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introducción}
+Las tablas de amortización son herramientas financieras esenciales que permiten visualizar cómo se distribuyen los pagos de un préstamo a lo largo del tiempo. Existen distintos tipos de tablas según las condiciones del préstamo, como los pagos extraordinarios.
+
+\section{Amortización sin pagos extraordinarios}
+\subsection{Definición}
+Este tipo de amortización implica pagos periódicos iguales durante la vida del préstamo. Cada pago incluye una parte de intereses y otra de capital.
+
+\subsection{Fórmula del pago periódico}
+\[
+R = P \cdot \frac{i(1+i)^n}{(1+i)^n - 1}
+\]
+
+Donde:
+\begin{itemize}
+    \item \( R \): Pago periódico
+    \item \( P \): Monto del préstamo
+    \item \( i \): Tasa de interés periódica (mensual)
+    \item \( n \): Número de pagos
+\end{itemize}
+
+\subsection{Ejemplo práctico sin pagos extraordinarios}
+\textbf{Datos:}
+\begin{itemize}
+    \item Monto del préstamo: \$12,000
+    \item Tasa de interés: 2\% mensual
+    \item Plazo: 6 meses
+\end{itemize}
+
+\textbf{Cálculo del pago mensual:}
+
+\[
+R = 12,000 \cdot \frac{0.02(1+0.02)^6}{(1+0.02)^6 - 1} \approx 2,149.00
+\]
+
+\textbf{Tabla de amortización completa (sin pagos extraordinarios):}
+
+\begin{longtable}{c c c c c}
+\caption{Tabla de amortización sin pagos extraordinarios}\\
+\toprule
+Mes & Pago & Interés & Amortización & Saldo \\
+\midrule
+0 & - & - & - & 12,000.00 \\
+1 & 2,149.00 & 240.00 & 1,909.00 & 10,091.00 \\
+2 & 2,149.00 & 201.82 & 1,947.18 & 8,143.82 \\
+3 & 2,149.00 & 162.88 & 1,986.12 & 6,157.70 \\
+4 & 2,149.00 & 123.15 & 2,025.85 & 4,131.85 \\
+5 & 2,149.00 & 82.64 & 2,066.36 & 2,065.49 \\
+6 & 2,149.00 & 41.31 & 2,107.69 & 0.00 \\
+\bottomrule
+\end{longtable}
+
+\section{Amortización con pagos extraordinarios}
+\subsection{Definición}
+Aquí, el deudor realiza uno o varios pagos adicionales al capital. Esto puede disminuir el saldo restante, acortar el plazo o reducir el pago mensual.
+
+\subsection{Ejemplo práctico con pago extraordinario}
+\textbf{Datos:}
+\begin{itemize}
+    \item Monto del préstamo: \$12,000
+    \item Tasa mensual: 2\%
+    \item Plazo: 6 meses
+    \item Pago extraordinario: \$2,000 en el mes 3
+\end{itemize}
+
+\textbf{Cálculo del pago mensual (mismo que antes):}
+
+\[
+R = 2,149.00
+\]
+
+\textbf{Tabla de amortización con pago extraordinario en el mes 3:}
+
+\begin{longtable}{c c c c c c}
+\caption{Tabla de amortización con pago extraordinario de \$2,000 en el mes 3}\\
+\toprule
+Mes & Pago & Interés & Amortización & Pago Extra & Saldo \\
+\midrule
+0 & - & - & - & - & 12,000.00 \\
+1 & 2,149.00 & 240.00 & 1,909.00 & 0 & 10,091.00 \\
+2 & 2,149.00 & 201.82 & 1,947.18 & 0 & 8,143.82 \\
+3 & 2,149.00 & 162.88 & 1,986.12 & 2,000.00 & 4,157.70 \\
+4 & 2,149.00 & 83.15 & 2,065.85 & 0 & 2,091.85 \\
+5 & 2,149.00 & 41.84 & 2,107.16 & 0 & -15.31 \\
+\bottomrule
+\end{longtable}
+
+\textit{Nota: El pago extra de \$2,000 en el mes 3 reduce el saldo considerablemente. El préstamo termina en el mes 5. Puede redondearse el último pago si se ajusta al monto real restante.}
+
+\section{Implementación en Excel}
+\subsection{Tabla sin pagos extraordinarios}
+Columnas:
+\begin{itemize}
+    \item Mes
+    \item Saldo Inicial
+    \item Interés = Saldo Inicial * Tasa
+    \item Pago fijo (calculado con fórmula PAGO)
+    \item Amortización = Pago - Interés
+    \item Saldo Final = Saldo Inicial - Amortización
+\end{itemize}
+
+\textbf{Fórmula del pago:}
+\texttt{=PAGO(0.02;6;-12000)} devuelve \$2,149.00
+
+\subsection{Tabla con pagos extraordinarios}
+Agrega una columna:
+\begin{itemize}
+    \item Pago Extraordinario (se coloca en el mes deseado)
+\end{itemize}
+
+El nuevo saldo se calcula:
+\[
+\text{Saldo Final} = \text{Saldo Inicial} - \text{Amortización} - \text{Pago Extraordinario}
+\]
+
+\section{Conclusión}
+Las tablas de amortización son esenciales para entender cómo se paga un préstamo. Los pagos extraordinarios pueden ayudar a ahorrar intereses y pagar más rápido. Excel es una excelente herramienta para personalizar estos escenarios.
+
+\section{Referencias}
+\begin{itemize}
+    \item Gitman, L. J., & Zutter, C. J. (2012). \textit{Principios de administración financiera}. Pearson Educación.
+    \item Ross, S. A., Westerfield, R. W., & Jordan, B. D. (2019). \textit{Fundamentals of Corporate Finance}. McGraw-Hill Education.
+    \item Brigham, E. F., & Houston, J. F. (2016). \textit{Fundamentals of Financial Management}. Cengage Learning.
+\end{itemize}
+
+\end{document}
+
