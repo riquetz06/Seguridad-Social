@@ -34,3 +34,7 @@ plot(forecasted_invalidity)
 # Proyectar los próximos 10 años para vejez
 forecasted_old_age <- forecast(fit_old_age, h=10)
 plot(forecasted_old_age)
+
+print(forecasted)
+plot(forecasted_old_age)
+print(forecasted_invalidity)
